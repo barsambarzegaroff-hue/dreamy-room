@@ -2,205 +2,95 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
-<title>Dreamy Room 2.0</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Dreamy Room City</title>
 
 <style>
-*{
- box-sizing:border-box;
- -webkit-tap-highlight-color:transparent;
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{
- margin:0;
- width:100%;
- height:100%;
- overflow:hidden;
- background:#171521;
- font-family:Arial,sans-serif;
- touch-action:none;
+ margin:0;width:100%;height:100%;overflow:hidden;
+ background:#151522;font-family:Arial,sans-serif;touch-action:none
 }
-
-#game{
- position:fixed;
- inset:0;
-}
-
-canvas{
- display:block;
- width:100%;
- height:100%;
-}
+#game{position:fixed;inset:0}
+canvas{display:block;width:100%;height:100%}
 
 #loading{
- position:fixed;
- inset:0;
- z-index:999;
- display:flex;
- align-items:center;
- justify-content:center;
- background:#191523;
- color:white;
- font-size:24px;
+ position:fixed;inset:0;z-index:999;
+ display:flex;align-items:center;justify-content:center;
+ background:#171522;color:white;font-size:25px
 }
 
 #top{
- position:fixed;
- top:10px;
- left:10px;
- right:10px;
- z-index:20;
- display:flex;
- justify-content:space-between;
- pointer-events:none;
+ position:fixed;top:10px;left:10px;right:10px;
+ z-index:20;display:flex;gap:7px;justify-content:space-between;
+ pointer-events:none
 }
-
 .stat{
- background:rgba(25,20,38,.82);
- color:white;
- padding:9px 12px;
- border-radius:18px;
- backdrop-filter:blur(8px);
- font-size:13px;
- box-shadow:0 5px 15px #0005;
+ background:#211c31dd;color:white;padding:9px 11px;
+ border-radius:18px;font-size:12px;backdrop-filter:blur(8px)
 }
 
 #controls{
- position:fixed;
- right:10px;
- bottom:15px;
- z-index:30;
- width:185px;
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:6px;
+ position:fixed;right:10px;bottom:15px;z-index:30;
+ width:190px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px
 }
-
 button{
- border:0;
- color:white;
- background:rgba(35,29,52,.9);
- border-radius:15px;
- padding:10px 6px;
- font-size:13px;
- box-shadow:0 4px 12px #0006;
+ border:0;color:white;background:#29233add;border-radius:15px;
+ padding:10px 6px;font-size:13px;box-shadow:0 4px 12px #0006
 }
-
-button:active{
- transform:scale(.93);
-}
+button:active{transform:scale(.93)}
 
 #joy{
- position:fixed;
- left:20px;
- bottom:25px;
- width:120px;
- height:120px;
- z-index:40;
- border-radius:50%;
- background:rgba(255,255,255,.12);
- border:2px solid rgba(255,255,255,.25);
+ position:fixed;left:18px;bottom:22px;width:120px;height:120px;
+ z-index:40;border-radius:50%;background:#ffffff1c;
+ border:2px solid #ffffff35
 }
-
 #stick{
- position:absolute;
- left:35px;
- top:35px;
- width:50px;
- height:50px;
- border-radius:50%;
- background:rgba(255,190,225,.8);
- box-shadow:0 4px 15px #0005;
+ position:absolute;left:35px;top:35px;width:50px;height:50px;
+ border-radius:50%;background:#ffbfe2dd;box-shadow:0 4px 15px #0005
 }
 
 #panel{
- position:fixed;
- top:65px;
- left:50%;
- transform:translateX(-50%);
- width:min(360px,92vw);
- max-height:70vh;
- overflow:auto;
- z-index:100;
- display:none;
- background:rgba(27,22,39,.96);
- color:white;
- padding:16px;
- border-radius:22px;
- box-shadow:0 10px 40px #0009;
+ position:fixed;top:60px;left:50%;transform:translateX(-50%);
+ width:min(380px,93vw);max-height:72vh;overflow:auto;z-index:100;
+ display:none;background:#1d1828f5;color:white;padding:16px;
+ border-radius:22px;box-shadow:0 10px 40px #0009
 }
-
-#panel h2{
- margin:0 0 12px;
- text-align:center;
-}
-
-.grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:8px;
-}
-
+#panel h2{text-align:center;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .card{
- background:rgba(255,255,255,.08);
- padding:12px;
- border-radius:16px;
- text-align:center;
+ background:#ffffff10;padding:12px;border-radius:16px;
+ text-align:center
 }
 
 #msg{
- position:fixed;
- left:50%;
- bottom:155px;
- transform:translateX(-50%);
- z-index:80;
- color:white;
- background:rgba(25,20,35,.92);
- padding:10px 18px;
- border-radius:20px;
- opacity:0;
- transition:.25s;
- pointer-events:none;
- white-space:nowrap;
+ position:fixed;left:50%;bottom:160px;transform:translateX(-50%);
+ z-index:80;color:white;background:#191522ed;padding:10px 17px;
+ border-radius:20px;opacity:0;transition:.2s;pointer-events:none;
+ white-space:nowrap
 }
 </style>
 </head>
 
 <body>
 
-<div id="loading">✨ Dreamy Room 2.0 ✨</div>
-
+<div id="loading">✨ Dreamy Room City ✨</div>
 <div id="game"></div>
 
 <div id="top">
-
- <div class="stat">
- 💎 <span id="coins">250</span>
- </div>
-
- <div class="stat">
- ⭐ Lv.<span id="level">1</span>
- </div>
-
- <div class="stat">
- XP <span id="xp">0</span>/100
- </div>
-
+ <div class="stat">💎 <span id="coins">250</span></div>
+ <div class="stat">⭐ Lv.<span id="level">1</span></div>
+ <div class="stat">XP <span id="xp">0</span>/100</div>
 </div>
 
-<div id="joy">
- <div id="stick"></div>
-</div>
+<div id="joy"><div id="stick"></div></div>
 
 <div id="controls">
+ <button onclick="openPanel('city')">🏙️</button>
+ <button onclick="openPanel('shops')">🏪</button>
+ <button onclick="openPanel('style')">👗</button>
 
  <button onclick="openPanel('rooms')">🏠</button>
- <button onclick="openPanel('style')">👗</button>
- <button onclick="openPanel('shop')">🛍️</button>
-
- <button onclick="openPanel('furniture')">🪑</button>
  <button onclick="toggleNight()">🌙</button>
  <button onclick="miniGame()">🎮</button>
 
@@ -211,11 +101,9 @@ button:active{
  <button onclick="zoom(-1)">－</button>
  <button onclick="reward()">🎁</button>
  <button onclick="save()">💾</button>
-
 </div>
 
 <div id="msg"></div>
-
 <div id="panel"></div>
 
 <script type="module">
@@ -224,31 +112,25 @@ import * as THREE from
 "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
 
 
-/* =====================================================
+/* =========================================================
    QUALITY
-===================================================== */
+========================================================= */
 
 const powerful =
- window.devicePixelRatio >= 2 ||
- innerWidth >= 1000;
+ devicePixelRatio>=2 || innerWidth>=1000;
 
-const PIXEL_RATIO =
- powerful ? Math.min(devicePixelRatio,2) : 1;
+const DPR=powerful?Math.min(devicePixelRatio,2):1;
 
 
-/* =====================================================
+/* =========================================================
    THREE
-===================================================== */
+========================================================= */
 
 const scene=new THREE.Scene();
-
-scene.background=new THREE.Color(0xbfdcff);
+scene.background=new THREE.Color(0xaed8ff);
 
 const camera=new THREE.PerspectiveCamera(
- 55,
- innerWidth/innerHeight,
- .1,
- 100
+ 55,innerWidth/innerHeight,.1,300
 );
 
 const renderer=new THREE.WebGLRenderer({
@@ -256,547 +138,376 @@ const renderer=new THREE.WebGLRenderer({
  powerPreference:"high-performance"
 });
 
-renderer.setPixelRatio(PIXEL_RATIO);
-
-renderer.setSize(
- innerWidth,
- innerHeight
-);
-
+renderer.setPixelRatio(DPR);
+renderer.setSize(innerWidth,innerHeight);
 renderer.shadowMap.enabled=true;
 
-if(powerful)
- renderer.shadowMap.type=
- THREE.PCFSoftShadowMap;
-
-document
- .getElementById("game")
- .appendChild(renderer.domElement);
+document.getElementById("game").appendChild(renderer.domElement);
 
 
-/* =====================================================
+/* =========================================================
    LIGHT
-===================================================== */
+========================================================= */
 
-const hemi=
- new THREE.HemisphereLight(
-  0xffffff,
-  0x665577,
-  2
+const hemi=new THREE.HemisphereLight(
+ 0xffffff,0x555066,2
 );
-
 scene.add(hemi);
 
-const sun=
- new THREE.DirectionalLight(
-  0xffffff,
-  3
+const sun=new THREE.DirectionalLight(
+ 0xffffff,3
 );
-
-sun.position.set(
-  5,10,5
-);
-
+sun.position.set(30,50,20);
 sun.castShadow=true;
-
-sun.shadow.mapSize.width=
- powerful ? 1024 : 512;
-
-sun.shadow.mapSize.height=
- powerful ? 1024 : 512;
-
+sun.shadow.mapSize.width=powerful?1024:512;
+sun.shadow.mapSize.height=powerful?1024:512;
 scene.add(sun);
 
 
-/* =====================================================
-   MATERIALS
-===================================================== */
+/* =========================================================
+   HELPERS
+========================================================= */
 
-function material(color){
-
+function mat(c){
  return new THREE.MeshStandardMaterial({
-  color:color,
-  roughness:.78
+  color:c,roughness:.78
  });
-
 }
 
-function box(
- w,h,d,
- color,
- x,y,z
-){
-
+function meshBox(w,h,d,c,x,y,z,add=true){
  const m=new THREE.Mesh(
-  new THREE.BoxGeometry(w,h,d),
-  material(color)
+  new THREE.BoxGeometry(w,h,d),mat(c)
  );
-
  m.position.set(x,y,z);
-
  m.castShadow=true;
  m.receiveShadow=true;
-
- scene.add(m);
-
+ if(add)scene.add(m);
  return m;
 }
 
-function sphere(
- r,
- color,
- x,y,z
-){
-
+function meshSphere(r,c,x,y,z,add=true){
  const m=new THREE.Mesh(
   new THREE.SphereGeometry(
-   r,
-   powerful?20:14,
-   powerful?14:10
-  ),
-  material(color)
+   r,powerful?18:12,powerful?14:10
+  ),mat(c)
  );
-
  m.position.set(x,y,z);
-
  m.castShadow=true;
  m.receiveShadow=true;
+ if(add)scene.add(m);
+ return m;
+}
 
- scene.add(m);
-
+function cyl(r,h,c,x,y,z,add=true){
+ const m=new THREE.Mesh(
+  new THREE.CylinderGeometry(r,r,h,16),
+  mat(c)
+ );
+ m.position.set(x,y,z);
+ m.castShadow=true;
+ m.receiveShadow=true;
+ if(add)scene.add(m);
  return m;
 }
 
 
-/* =====================================================
-   HOUSE
-===================================================== */
+/* =========================================================
+   WORLD
+========================================================= */
 
-const floor=
- box(
-  20,.2,16,
-  0xf0d6dc,
-  0,-.1,0
- );
+const WORLD=100;
 
-const backWall=
- box(
-  20,7,.2,
-  0xf8dff0,
-  0,3.5,-7.8
- );
-
-const leftWall=
- box(
-  .2,7,16,
-  0xe6d8f7,
-  -10,3.5,0
- );
-
-
-/* =====================================================
-   ROOM DIVIDER
-===================================================== */
-
-const divider=
- box(
-  .2,3.2,5,
-  0xf4d9e8,
-  0,1.6,-5
- );
-
-
-/* =====================================================
-   RUGS
-===================================================== */
-
-box(
- 6,.05,4,
- 0xe9a9c9,
- -5,.03,2
-);
-
-box(
- 6,.05,4,
- 0xc8b4ef,
- 5,.03,2
+meshBox(
+ WORLD,.2,WORLD,
+ 0x83c87a,0,-.1,0
 );
 
 
-/* =====================================================
-   BEDROOM
-===================================================== */
+/* =========================================================
+   CITY ROADS
+========================================================= */
 
-function makeBed(){
-
- const g=new THREE.Group();
-
- function part(
-  w,h,d,c,x,y,z
- ){
-
-  const m=new THREE.Mesh(
-   new THREE.BoxGeometry(w,h,d),
-   material(c)
-  );
-
-  m.position.set(x,y,z);
-  m.castShadow=true;
-  m.receiveShadow=true;
-
-  g.add(m);
- }
-
- part(
-  4,.65,2.5,
-  0x9365bd,
-  0,0,0
- );
-
- part(
-  3.8,.4,2.25,
-  0xfff5fb,
-  0,.55,0
- );
-
- part(
-  2.1,.12,2.1,
-  0xe89bc8,
-  .5,.82,0
- );
-
- part(
-  1.2,.25,.8,
-  0xffffff,
-  -1.2,.86,0
- );
-
- part(
-  .2,2.3,2.7,
-  0x76519e,
-  -2.1,1,0
- );
-
- g.position.set(
-  -6,0,-3
- );
-
- scene.add(g);
-
- return g;
+function road(w,d,x,z){
+ meshBox(w,.06,d,0x42434b,x,.02,z);
 }
 
-const bed=makeBed();
+road(100,10,0,0);
+road(10,100,0,0);
+road(100,8,0,28);
+road(8,100,28,0);
+road(100,8,0,-28);
+road(8,100,-28,0);
 
 
-/* =====================================================
-   WARDROBE
-===================================================== */
+/* sidewalks */
 
-function makeWardrobe(){
+function sidewalk(w,d,x,z){
+ meshBox(w,.12,d,0xbeb8b2,x,.09,z);
+}
+
+sidewalk(100,3,0,6.5);
+sidewalk(100,3,0,-6.5);
+sidewalk(3,100,6.5,0);
+sidewalk(3,100,-6.5,0);
+
+sidewalk(100,3,0,34);
+sidewalk(100,3,0,21.5);
+
+
+/* =========================================================
+   ROAD MARKINGS
+========================================================= */
+
+for(let x=-45;x<=45;x+=8)
+ meshBox(3,.035,.22,0xf7df76,x,.08,0);
+
+for(let z=-45;z<=45;z+=8)
+ meshBox(.22,.035,3,0xf7df76,0,.08,z);
+
+
+/* =========================================================
+   TREES
+========================================================= */
+
+function tree(x,z){
+ cyl(.22,1,0x70452d,x,.5,z);
+ meshSphere(.8,0x69bd70,x,1.35,z);
+ meshSphere(.55,0x7ad17d,x+.45,1.45,z);
+ meshSphere(.55,0x62b867,x-.4,1.4,z);
+}
+
+[
+ [-8,-11],[8,-11],[-12,11],[12,11],
+ [-18,18],[18,18],[-18,-18],[18,-18],
+ [-35,12],[35,12],[-35,-12],[35,-12]
+].forEach(p=>tree(...p));
+
+
+/* =========================================================
+   STREET LIGHTS
+========================================================= */
+
+function streetLight(x,z){
+ cyl(.08,3,0x303038,x,1.5,z);
+ meshSphere(.22,0xfff2ad,x,3.1,z);
+}
+
+for(let x=-40;x<=40;x+=10){
+ streetLight(x,5);
+ streetLight(x,-5);
+}
+
+
+/* =========================================================
+   BUILDING SYSTEM
+========================================================= */
+
+const buildings=[];
+
+function building(name,x,z,w,d,color,emoji){
 
  const g=new THREE.Group();
 
  const body=new THREE.Mesh(
-  new THREE.BoxGeometry(
-   2.5,3,.8
-  ),
-  material(0xc98daf)
+  new THREE.BoxGeometry(w,5,d),
+  mat(color)
  );
-
- body.position.y=1.5;
+ body.position.y=2.5;
  body.castShadow=true;
-
+ body.receiveShadow=true;
  g.add(body);
 
- for(
-  let x of [-.6,.6]
- ){
+ /* roof */
+ const roof=new THREE.Mesh(
+  new THREE.BoxGeometry(w+.2,.35,d+.2),
+  mat(0x55435d)
+ );
+ roof.position.y=5.15;
+ g.add(roof);
 
-  const door=new THREE.Mesh(
-   new THREE.BoxGeometry(
-    1.05,2.6,.08
-   ),
-   material(0xf1c5dc)
+ /* sign */
+ const sign=new THREE.Mesh(
+  new THREE.BoxGeometry(Math.min(w-1,5),.7,.12),
+  mat(0xffffff)
+ );
+ sign.position.set(0,4.3,d/2+.08);
+ g.add(sign);
+
+ /* door */
+ const door=new THREE.Mesh(
+  new THREE.BoxGeometry(1.2,2.2,.12),
+  mat(0x5a3b43)
+ );
+ door.position.set(0,1.1,d/2+.1);
+ g.add(door);
+
+ /* windows */
+ for(let xx=-1.3;xx<=1.3;xx+=2.6){
+  const win=new THREE.Mesh(
+   new THREE.BoxGeometry(1.1,1.1,.08),
+   mat(0x9edfff)
   );
-
-  door.position.set(
-   x,1.5,.43
-  );
-
-  g.add(door);
+  win.position.set(xx,2.5,d/2+.09);
+  g.add(win);
  }
 
- g.position.set(
-  -8,0,-5.9
- );
-
+ g.position.set(x,0,z);
  scene.add(g);
+
+ buildings.push({
+  name,
+  group:g,
+  x,z,
+  w,d,
+  emoji
+ });
 
  return g;
 }
 
-const wardrobe=makeWardrobe();
 
+/* =========================================================
+   SHOPS
+========================================================= */
 
-/* =====================================================
-   DRESSING TABLE
-===================================================== */
-
-const dressing=
- box(
- 2.4,.8,1,
- 0xd79ab9,
- -4,.8,-6
- );
-
-box(
- 1.4,1.5,.1,
- 0xccecff,
- -4,2,-6.45
+building(
+ "🍎 میوه فروشی",
+ -16,-12,8,7,
+ 0xf3b36c,"🍎"
 );
 
-box(
- .15,1.5,.15,
- 0xffffff,
- -4.7,2,-6.35
+building(
+ "🛒 سوپرمارکت",
+ -27,-12,9,7,
+ 0x8ec8e8,"🛒"
 );
 
-box(
- .15,1.5,.15,
- 0xffffff,
- -3.3,2,-6.35
+building(
+ "👗 لباس فروشی",
+ 16,-12,8,7,
+ 0xe8a4c5,"👗"
+);
+
+building(
+ "☕ کافه",
+ 27,-12,8,7,
+ 0xc99a72,"☕"
+);
+
+building(
+ "💇 آرایشگاه",
+ -16,12,8,7,
+ 0xd9a7ed,"💇"
+);
+
+building(
+ "🌷 گل فروشی",
+ -27,12,9,7,
+ 0xa8d58e,"🌷"
+);
+
+building(
+ "🍕 رستوران",
+ 16,12,9,7,
+ 0xe79a72,"🍕"
+);
+
+building(
+ "🏦 بانک",
+ 28,12,10,7,
+ 0xd6d1ca,"🏦"
 );
 
 
-/* =====================================================
-   LIVING ROOM SOFA
-===================================================== */
+/* =========================================================
+   SPECIAL BUILDINGS
+========================================================= */
 
-function sofa(){
+building(
+ "🏥 بیمارستان",
+ -42,0,11,10,
+ 0xf4eeee,"🏥"
+);
 
- box(
- 4,.65,1.4,
- 0xb184d4,
- 5,.65,-3
- );
+building(
+ "🏫 مدرسه",
+ 42,0,11,10,
+ 0xf0d58d,"🏫"
+);
 
- box(
- 4,1.5,.3,
- 0xa373c4,
- 5,1.25,-3.6
- );
 
- box(
- .35,1.2,1.5,
- 0xa373c4,
- 3.2,1.1,-3
- );
+/* =========================================================
+   FRUIT STALL
+========================================================= */
 
- box(
- .35,1.2,1.5,
- 0xa373c4,
- 6.8,1.1,-3
- );
-
+function fruit(x,y,z,c){
+ meshSphere(.22,c,x,y,z);
 }
 
-sofa();
+[
+ [ -18,1.1,-8,0xff4d5a],
+ [ -17.4,1.1,-8,0xffd34e],
+ [ -16.8,1.1,-8,0xff8e35],
+ [ -16.2,1.1,-8,0x78c850],
+ [ -17.7,1.35,-8,0xff4d5a],
+ [ -16.7,1.35,-8,0xffd34e]
+].forEach(p=>fruit(...p));
 
 
-/* =====================================================
-   LIVING TABLE
-===================================================== */
+/* =========================================================
+   PARK
+========================================================= */
 
-box(
- 2,.18,1.3,
- 0xd39b72,
- 5,.9,-.8
-);
+meshBox(16,.12,12,0x74bd70,0,.1,43);
 
-box(
- .15,.8,.15,
- 0x805b3d,
- 4.4,.45,-.5
-);
+for(let x=-6;x<=6;x+=3) tree(x,43);
 
-box(
- .15,.8,.15,
- 0x805b3d,
- 5.6,.45,-.5
-);
-
-
-/* =====================================================
-   KITCHEN
-===================================================== */
-
-function makeKitchen(){
-
- /* cabinets */
-
- for(
-  let x of [3,4.2,5.4,6.6,7.8]
- ){
-
-  box(
-   1.05,1.4,.8,
-   0xffffff,
-   x,.7,6
-  );
-
-  box(
-   .8,.8,.06,
-   0xf3c4dc,
-   x,.7,5.56
-  );
-
- }
-
- /* counter */
-
- box(
- 6, .25, 1,
- 0xe5b58d,
- 5.4,1.55,6
- );
-
- /* upper cabinets */
-
- for(
-  let x of [3.5,4.8,6.1,7.4]
- ){
-
-  box(
-   1.1,1.3,.55,
-   0xf4d4e7,
-   x,4.2,6.2
-  );
-
- }
-
- /* fridge */
-
- box(
- 1.3,3.2,1,
- 0xf0f2f7,
- 8.5,1.6,4.9
- );
-
- box(
- .9,1.1,.05,
- 0x99cfff,
- 8.5,2.3,4.37
- );
-
- /* stove */
-
- box(
- 1.6,.18,1,
- 0x303039,
- 2.2,1.7,6
- );
-
- for(
-  let x of [1.85,2.55]
- ){
-
-  const burner=
-   new THREE.Mesh(
-    new THREE.CylinderGeometry(
-     .22,.22,.05,16
-    ),
-    material(0x111111)
-   );
-
-  burner.position.set(
-   x,1.84,6
-  );
-
-  burner.rotation.x=
-   Math.PI/2;
-
-  scene.add(burner);
- }
-
- /* sink */
-
- box(
- 1.3,.18,.9,
- 0xa8d8e8,
- 7,1.7,6
- );
-
- /* microwave */
-
- box(
- 1.5,.8,.65,
- 0x4d4654,
- 8.1,3.4,6
- );
-
+function bench(x,z){
+ meshBox(2,.18,.5,0x9a633d,x,.65,z);
+ meshBox(2,.8,.18,0x855432,x,1,z-.2);
 }
-
-makeKitchen();
-
-
-/* =====================================================
-   DECOR
-===================================================== */
-
-function makePlant(x,z){
-
- box(
-  .8,.7,.8,
-  0xd89071,
-  x,.35,z
- );
-
- for(let i=0;i<4;i++){
-
-  const leaf=sphere(
-   .3,
-   0x72c47b,
-   x+(i-1.5)*.2,
-   1,
-   z
-  );
-
-  leaf.scale.y=1.5;
- }
-
-}
-
-makePlant(8,-5);
-makePlant(-1,-6);
+bench(-4,40);
+bench(4,46);
 
 
-/* =====================================================
-   CHARACTER
-===================================================== */
+/* =========================================================
+   HOUSE / HOME AREA
+========================================================= */
+
+building(
+ "🏠 خانه Dreamy",
+ 0,-40,18,12,
+ 0xf3c7dc,"🏠"
+);
+
+/* bedroom furniture */
+
+meshBox(5,.6,2.5,0x8e65bd,-4,.4,-37);
+meshBox(4.7,.3,2.2,0xfff5fb,-4,.85,-37);
+
+meshBox(2.5,3,.8,0xc98daf,-9,1.5,-34);
+
+meshBox(4,.7,1.3,0xb184d4,5,.7,-37);
+meshBox(4,1.3,.3,0xa373c4,5,1.25,-37);
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
 
 const player=new THREE.Group();
-
 scene.add(player);
 
-const skinColors=[
-  0xffd1b5,
-  0xf1b58f,
-  0xd9946f
+const skin=[
+ 0xffd1b5,0xf1b58f,0xd9946f
 ];
 
-const outfitColors=[
-  0x8d69e8,
-  0xff79ad,
-  0x69b9e8,
-  0x8fd36d
+const clothes=[
+ 0x8d69e8,0xff79ad,0x69b9e8,0x8fd36d,0xffa34d
 ];
 
-const hairColors=[
-  0x281b22,
-  0x6e3d25,
-  0xb57a35,
-  0xd8c0a0
+const hairs=[
+ 0x281b22,0x6e3d25,0xb57a35,0xd8c0a0
 ];
 
 let skinIndex=0;
@@ -804,323 +515,221 @@ let outfitIndex=0;
 let hairIndex=0;
 let accessoryIndex=0;
 
-let body;
-let head;
-let hair;
-let legL;
-let legR;
-let armL;
-let armR;
-let accessory;
+let parts={};
 
+function localBox(w,h,d,c,x,y,z){
+ const m=meshBox(w,h,d,c,x,y,z,false);
+ player.add(m);
+ return m;
+}
 
-/* =====================================================
-   BUILD CHARACTER
-===================================================== */
-
-function clearCharacter(){
-
- while(player.children.length){
-
-  player.remove(
-   player.children[0]
-  );
-
- }
-
+function localSphere(r,c,x,y,z){
+ const m=meshSphere(r,c,x,y,z,false);
+ player.add(m);
+ return m;
 }
 
 function buildCharacter(){
 
- clearCharacter();
+ while(player.children.length)
+  player.remove(player.children[0]);
 
- body=new THREE.Mesh(
-  new THREE.CylinderGeometry(
-   .38,.48,1.25,16
-  ),
-  material(
-   outfitColors[outfitIndex]
-  )
+ parts.body=localBox(
+  .8,1.25,.55,
+  clothes[outfitIndex],
+  0,1.55,0
  );
 
- body.position.y=1.55;
- body.castShadow=true;
-
- player.add(body);
-
-
- /* head */
-
- head=sphere(
-  .48,
-  skinColors[skinIndex],
+ parts.head=localSphere(
+  .48,skin[skinIndex],
   0,2.55,0
  );
 
- player.add(head);
+ parts.hair=localSphere(
+  .53,hairs[hairIndex],
+  0,2.83,0
+ );
+ parts.hair.scale.set(1.05,.9,1);
 
+ localSphere(.22,hairs[hairIndex],-.43,2.45,0);
+ localSphere(.22,hairs[hairIndex],.43,2.45,0);
 
- /* hair */
-
- hair=sphere(
-  .53,
-  hairColors[hairIndex],
-  0,2.82,0
+ parts.legL=localBox(
+  .22,.85,.25,0x514c72,-.18,.55,0
+ );
+ parts.legR=localBox(
+  .22,.85,.25,0x514c72,.18,.55,0
  );
 
- hair.scale.set(
-  1.05,.9,1
+ parts.armL=localBox(
+  .18,.75,.18,skin[skinIndex],-.52,1.6,0
+ );
+ parts.armR=localBox(
+  .18,.75,.18,skin[skinIndex],.52,1.6,0
  );
 
- player.add(hair);
+ localSphere(.055,0x25202d,-.17,2.58,.45);
+ localSphere(.055,0x25202d,.17,2.58,.45);
 
-
- /* hair side pieces */
-
- const h1=sphere(
-  .22,
-  hairColors[hairIndex],
-  -.43,2.45,0
- );
-
- const h2=sphere(
-  .22,
-  hairColors[hairIndex],
-  .43,2.45,0
- );
-
- player.add(h1,h2);
-
-
- /* legs */
-
- legL=box(
-  .22,.85,.25,
-  0x514c72,
-  -.18,.55,0
- );
-
- legR=box(
-  .22,.85,.25,
-  0x514c72,
-  .18,.55,0
- );
-
- player.add(
-  legL,
-  legR
- );
-
-
- /* arms */
-
- armL=box(
-  .18,.75,.18,
-  skinColors[skinIndex],
-  -.52,1.6,0
- );
-
- armR=box(
-  .18,.75,.18,
-  skinColors[skinIndex],
-  .52,1.6,0
- );
-
- player.add(
-  armL,
-  armR
- );
-
-
- /* eyes */
-
- const eye1=sphere(
-  .055,
-  0x25202d,
-  -.17,2.58,.45
- );
-
- const eye2=sphere(
-  .055,
-  0x25202d,
-  .17,2.58,.45
- );
-
- player.add(
-  eye1,
-  eye2
- );
-
-
- /* accessory */
-
- if(accessoryIndex===1){
-
-  accessory=sphere(
-   .15,
-   0xffd34e,
-   0,3.28,0
-  );
-
-  player.add(accessory);
-
- }
+ if(accessoryIndex===1)
+  localSphere(.15,0xffd34e,0,3.28,0);
 
  if(accessoryIndex===2){
-
-  accessory=new THREE.Mesh(
-   new THREE.TorusGeometry(
-    .18,.035,8,16
-   ),
-   material(0xffd34e)
+  const a=new THREE.Mesh(
+   new THREE.TorusGeometry(.18,.035,8,16),
+   mat(0xffd34e)
   );
-
-  accessory.position.set(
-   .52,2.55,.05
-  );
-
-  accessory.rotation.x=
-   Math.PI/2;
-
-  player.add(accessory);
-
+  a.position.set(.52,2.55,.05);
+  player.add(a);
  }
-
 }
 
 buildCharacter();
-
-player.position.set(
- 0,0,1
-);
+player.position.set(0,0,-32);
 
 
-/* =====================================================
+/* =========================================================
    PET
-===================================================== */
+========================================================= */
 
 const pet=new THREE.Group();
-
 scene.add(pet);
 
-const petBody=sphere(
- .5,
- 0xffa9d0,
- 0,.55,0
-);
+const pb=meshSphere(.5,0xffa9d0,0,.55,0,false);
+pb.scale.x=1.25;
+pet.add(pb);
 
-petBody.scale.x=1.25;
+pet.add(meshSphere(.42,0xffbddb,0,1.15,0,false));
 
-pet.add(petBody);
+pet.add(meshSphere(.05,0x222222,-.13,1.18,.38,false));
+pet.add(meshSphere(.05,0x222222,.13,1.18,.38,false));
 
-const petHead=sphere(
- .42,
- 0xffbddb,
- 0,1.15,0
-);
-
-pet.add(petHead);
-
-const petEar1=new THREE.Mesh(
- new THREE.ConeGeometry(
-  .18,.38,4
- ),
- material(0xff86bd)
-);
-
-petEar1.position.set(
- -.27,1.5,0
-);
-
-const petEar2=petEar1.clone();
-
-petEar2.position.x=.27;
-
-pet.add(
- petEar1,
- petEar2
-);
-
-const petEye1=sphere(
- .05,
- 0x222222,
- -.13,1.18,.38
-);
-
-const petEye2=sphere(
- .05,
- 0x222222,
- .13,1.18,.38
-);
-
-pet.add(
- petEye1,
- petEye2
-);
-
-pet.position.set(
- 1,0,1.5
-);
+pet.position.set(2,0,-31);
 
 
-/* =====================================================
+/* =========================================================
+   NPCs
+========================================================= */
+
+const npcs=[];
+
+function npc(x,z,color){
+
+ const g=new THREE.Group();
+
+ const body=new THREE.Mesh(
+  new THREE.CylinderGeometry(.35,.43,1.1,12),
+  mat(color)
+ );
+ body.position.y=1.2;
+ g.add(body);
+
+ const head=new THREE.Mesh(
+  new THREE.SphereGeometry(.4,12,10),
+  mat(0xffc6a5)
+ );
+ head.position.y=2.05;
+ g.add(head);
+
+ g.position.set(x,0,z);
+ scene.add(g);
+
+ npcs.push({
+  g,
+  baseX:x,
+  baseZ:z,
+  phase:Math.random()*6
+ });
+}
+
+npc(-10,8,0xff88b5);
+npc(10,8,0x7fa9ed);
+npc(-9,-8,0x8fd36d);
+npc(9,-8,0xffb05f);
+npc(35,7,0xc48ee8);
+npc(-35,-7,0xf18b8b);
+
+
+/* =========================================================
+   CARS
+========================================================= */
+
+const cars=[];
+
+function car(x,z,color,axis=0){
+
+ const g=new THREE.Group();
+
+ const body=new THREE.Mesh(
+  new THREE.BoxGeometry(2.5,.55,1.2),
+  mat(color)
+ );
+ body.position.y=.55;
+ g.add(body);
+
+ const top=new THREE.Mesh(
+  new THREE.BoxGeometry(1.3,.45,1),
+  mat(0x91d5ee)
+ );
+ top.position.set(0,.95,0);
+ g.add(top);
+
+ for(const wx of [-.8,.8]){
+  for(const wz of [-.55,.55]){
+   const w=new THREE.Mesh(
+    new THREE.CylinderGeometry(.18,.18,.12,12),
+    mat(0x222222)
+   );
+   w.rotation.z=Math.PI/2;
+   w.position.set(wx,.35,wz);
+   g.add(w);
+  }
+ }
+
+ g.position.set(x,0,z);
+ scene.add(g);
+
+ cars.push({g,axis,speed:.035+Math.random()*.025});
+}
+
+car(-30,0,0xe96f91,0);
+car(30,0,0x6f9fe9,0);
+car(0,-30,0x8fd36d,1);
+car(0,30,0xf0b35c,1);
+
+
+/* =========================================================
    MOVEMENT
-===================================================== */
+========================================================= */
 
 let joyX=0;
 let joyY=0;
-
 let moving=false;
-
-const speed=.065;
 
 function movePlayer(){
 
  if(!moving)return;
 
- const dx=joyX*speed;
- const dz=joyY*speed;
+ const speed=.09;
 
- player.position.x+=dx;
- player.position.z+=dz;
+ player.position.x+=joyX*speed;
+ player.position.z+=joyY*speed;
 
- /* house boundaries */
+ player.position.x=THREE.MathUtils.clamp(
+  player.position.x,-47,47
+ );
 
- player.position.x=
-  THREE.MathUtils.clamp(
-   player.position.x,
-   -8.8,
-   8.8
-  );
+ player.position.z=THREE.MathUtils.clamp(
+  player.position.z,-47,47
+ );
 
- player.position.z=
-  THREE.MathUtils.clamp(
-   player.position.z,
-   -6.8,
-   6.8
-  );
-
- const amount=
-  Math.sqrt(
-   joyX*joyX+
-   joyY*joyY
-  );
-
- if(amount>.1){
-
-  player.rotation.y=
-   Math.atan2(
-    joyX,
-    joyY
-   );
- }
-
+ player.rotation.y=Math.atan2(joyX,joyY);
 }
 
 
-/* =====================================================
-   WALK ANIMATION
-===================================================== */
+/* =========================================================
+   WALK
+========================================================= */
 
 let walkTime=0;
 
@@ -1130,75 +739,51 @@ function animatePlayer(){
 
   walkTime+=.22;
 
-  legL.rotation.x=
+  parts.legL.rotation.x=
    Math.sin(walkTime)*.65;
 
-  legR.rotation.x=
+  parts.legR.rotation.x=
    Math.sin(walkTime+Math.PI)*.65;
 
-  armL.rotation.x=
+  parts.armL.rotation.x=
    Math.sin(walkTime+Math.PI)*.45;
 
-  armR.rotation.x=
+  parts.armR.rotation.x=
    Math.sin(walkTime)*.45;
 
   player.position.y=
-   Math.abs(
-    Math.sin(walkTime)
-   )*.025;
+   Math.abs(Math.sin(walkTime))*.025;
 
  }else{
 
-  legL.rotation.x*=.8;
-  legR.rotation.x*=.8;
-  armL.rotation.x*=.8;
-  armR.rotation.x*=.8;
-
-  player.position.y*=.8;
+  parts.legL.rotation.x*=.8;
+  parts.legR.rotation.x*=.8;
+  parts.armL.rotation.x*=.8;
+  parts.armR.rotation.x*=.8;
  }
-
 }
 
 
-/* =====================================================
+/* =========================================================
    JOYSTICK
-===================================================== */
+========================================================= */
 
-const joy=
- document.getElementById("joy");
-
-const stick=
- document.getElementById("stick");
+const joy=document.getElementById("joy");
+const stick=document.getElementById("stick");
 
 function joystick(e){
 
- const rect=
-  joy.getBoundingClientRect();
+ const r=joy.getBoundingClientRect();
 
- const cx=
-  rect.left+
-  rect.width/2;
-
- const cy=
-  rect.top+
-  rect.height/2;
-
- let dx=
-  e.clientX-cx;
-
- let dy=
-  e.clientY-cy;
+ let dx=e.clientX-(r.left+r.width/2);
+ let dy=e.clientY-(r.top+r.height/2);
 
  const max=38;
+ const d=Math.hypot(dx,dy);
 
- const dist=
-  Math.sqrt(dx*dx+dy*dy);
-
- if(dist>max){
-
-  dx=dx/dist*max;
-  dy=dy/dist*max;
-
+ if(d>max){
+  dx=dx/d*max;
+  dy=dy/d*max;
  }
 
  stick.style.transform=
@@ -1207,101 +792,101 @@ function joystick(e){
  joyX=dx/max;
  joyY=dy/max;
 
- moving=
-  Math.abs(joyX)+
-  Math.abs(joyY)>.1;
+ moving=Math.abs(joyX)+Math.abs(joyY)>.1;
 }
 
 function stopJoy(){
-
- joyX=0;
- joyY=0;
- moving=false;
-
- stick.style.transform=
-  "translate(0,0)";
+ joyX=0;joyY=0;moving=false;
+ stick.style.transform="translate(0,0)";
 }
 
-joy.addEventListener(
- "pointerdown",
- e=>{
-  joy.setPointerCapture(e.pointerId);
-  joystick(e);
- }
-);
+joy.addEventListener("pointerdown",e=>{
+ joy.setPointerCapture(e.pointerId);
+ joystick(e);
+});
 
-joy.addEventListener(
- "pointermove",
- e=>{
-  if(e.buttons)
-   joystick(e);
- }
-);
+joy.addEventListener("pointermove",e=>{
+ if(e.buttons)joystick(e);
+});
 
-joy.addEventListener(
- "pointerup",
- stopJoy
-);
-
-joy.addEventListener(
- "pointercancel",
- stopJoy
-);
+joy.addEventListener("pointerup",stopJoy);
+joy.addEventListener("pointercancel",stopJoy);
 
 
-/* =====================================================
+/* =========================================================
    PET FOLLOW
-===================================================== */
+========================================================= */
 
 function updatePet(){
 
- const dx=
-  player.position.x-
-  pet.position.x;
+ const dx=player.position.x-pet.position.x;
+ const dz=player.position.z-pet.position.z;
+ const d=Math.hypot(dx,dz);
 
- const dz=
-  player.position.z-
-  pet.position.z;
-
- const dist=
-  Math.sqrt(dx*dx+dz*dz);
-
- if(dist>2){
-
-  pet.position.x+=
-   dx*.025;
-
-  pet.position.z+=
-   dz*.025;
-
-  pet.rotation.y=
-   Math.atan2(
-    dx,
-    dz
-   );
+ if(d>2){
+  pet.position.x+=dx*.025;
+  pet.position.z+=dz*.025;
+  pet.rotation.y=Math.atan2(dx,dz);
  }
-
 }
 
 
-/* =====================================================
-   CAMERA
-===================================================== */
+/* =========================================================
+   NPC ANIMATION
+========================================================= */
 
-let cameraAngle=.55;
-let cameraDistance=14;
+function updateNPCs(t){
+
+ npcs.forEach(n=>{
+  n.g.position.x=
+   n.baseX+Math.sin(t+n.phase)*.8;
+
+  n.g.position.z=
+   n.baseZ+Math.cos(t*.7+n.phase)*.5;
+ });
+}
+
+
+/* =========================================================
+   CARS ANIMATION
+========================================================= */
+
+function updateCars(){
+
+ cars.forEach(c=>{
+
+  if(c.axis===0){
+   c.g.position.x+=c.speed;
+
+   if(c.g.position.x>50)
+    c.g.position.x=-50;
+  }else{
+   c.g.position.z+=c.speed;
+
+   if(c.g.position.z>50)
+    c.g.position.z=-50;
+  }
+
+ });
+}
+
+
+/* =========================================================
+   CAMERA
+========================================================= */
+
+let cameraAngle=.6;
+let cameraDistance=13;
 
 function updateCamera(){
 
  camera.position.x=
   player.position.x+
-  Math.sin(cameraAngle)*
-  cameraDistance;
+  Math.sin(cameraAngle)*cameraDistance;
 
  camera.position.z=
   player.position.z+
-  Math.cos(cameraAngle)*
-  cameraDistance;
+  Math.cos(cameraAngle)*cameraDistance;
 
  camera.position.y=8;
 
@@ -1310,38 +895,26 @@ function updateCamera(){
   1.2,
   player.position.z
  );
-
 }
 
-updateCamera();
+function rotateCamera(d){
+ cameraAngle+=d*.35;
+}
 
-function rotateCamera(direction){
-
- cameraAngle+=
-  direction*.35;
-
+function zoom(d){
+ cameraDistance+=d>0?-1:1;
+ cameraDistance=THREE.MathUtils.clamp(
+  cameraDistance,7,20
+ );
 }
 
 window.rotateCamera=rotateCamera;
-
-window.zoom=function(dir){
-
- cameraDistance+=
-  dir>0?-1:1;
-
- cameraDistance=
-  THREE.MathUtils.clamp(
-   cameraDistance,
-   8,
-   19
-  );
-
-};
+window.zoom=zoom;
 
 
-/* =====================================================
-   DAY NIGHT
-===================================================== */
+/* =========================================================
+   DAY / NIGHT
+========================================================= */
 
 let night=false;
 
@@ -1350,142 +923,207 @@ window.toggleNight=function(){
  night=!night;
 
  if(night){
-
-  scene.background.set(
-   0x11162e
-  );
-
+  scene.background.set(0x10152e);
   hemi.intensity=.7;
   sun.intensity=.8;
-
   message("🌙 شب شد!");
-
  }else{
-
-  scene.background.set(
-   0xbfdcff
-  );
-
+  scene.background.set(0xaed8ff);
   hemi.intensity=2;
   sun.intensity=3;
-
   message("☀️ روز شد!");
-
  }
 
  save();
-
 };
 
 
-/* =====================================================
-   COINS / XP
-===================================================== */
+/* =========================================================
+   MONEY / XP
+========================================================= */
 
-let coins=
- Number(
-  localStorage.getItem(
-   "dreamyCoins"
-  )||250
- );
-
-let xp=
- Number(
-  localStorage.getItem(
-   "dreamyXP"
-  )||0
- );
-
-let level=
- Number(
-  localStorage.getItem(
-   "dreamyLevel"
-  )||1
- );
+let coins=Number(localStorage.getItem("dreamyCoins")||250);
+let xp=Number(localStorage.getItem("dreamyXP")||0);
+let level=Number(localStorage.getItem("dreamyLevel")||1);
 
 function updateStats(){
 
- document.getElementById(
-  "coins"
- ).textContent=coins;
-
- document.getElementById(
-  "xp"
- ).textContent=xp;
-
- document.getElementById(
-  "level"
- ).textContent=level;
-
+ document.getElementById("coins").textContent=coins;
+ document.getElementById("xp").textContent=xp;
+ document.getElementById("level").textContent=level;
 }
 
 function addXP(n){
 
  xp+=n;
 
- if(xp>=100){
-
+ while(xp>=100){
   xp-=100;
   level++;
-
   coins+=50;
-
-  message(
-   "🎉 Level Up! +50 💎"
-  );
-
+  message("🎉 Level Up! +50 💎");
  }
 
  updateStats();
  save();
-
 }
 
 
-/* =====================================================
+/* =========================================================
    SAVE
-===================================================== */
+========================================================= */
 
 window.save=function(){
 
- localStorage.setItem(
-  "dreamyCoins",
-  coins
- );
-
- localStorage.setItem(
-  "dreamyXP",
-  xp
- );
-
- localStorage.setItem(
-  "dreamyLevel",
-  level
- );
-
- localStorage.setItem(
-  "dreamyOutfit",
-  outfitIndex
- );
-
- localStorage.setItem(
-  "dreamyHair",
-  hairIndex
- );
-
- localStorage.setItem(
-  "dreamyAccessory",
-  accessoryIndex
- );
+ localStorage.setItem("dreamyCoins",coins);
+ localStorage.setItem("dreamyXP",xp);
+ localStorage.setItem("dreamyLevel",level);
+ localStorage.setItem("dreamyOutfit",outfitIndex);
+ localStorage.setItem("dreamyHair",hairIndex);
+ localStorage.setItem("dreamyAccessory",accessoryIndex);
 
  message("💾 ذخیره شد!");
-
 };
 
 
-/* =====================================================
-   STYLE PANEL
-===================================================== */
+/* =========================================================
+   TELEPORT
+========================================================= */
+
+function teleport(x,z,text){
+
+ player.position.x=x;
+ player.position.z=z;
+ closePanel();
+ message(text);
+}
+
+window.teleport=teleport;
+
+
+/* =========================================================
+   CITY PANEL
+========================================================= */
+
+function cityPanel(){
+
+ return `
+ <h2>🏙️ شهر</h2>
+
+ <div class="grid">
+
+ <div class="card">🍎<br>میوه‌فروشی<br><button onclick="teleport(-16,-8,'🍎 میوه‌فروشی')">ورود</button></div>
+
+ <div class="card">🛒<br>سوپرمارکت<br><button onclick="teleport(-27,-8,'🛒 سوپرمارکت')">ورود</button></div>
+
+ <div class="card">👗<br>لباس‌فروشی<br><button onclick="teleport(16,-8,'👗 لباس‌فروشی')">ورود</button></div>
+
+ <div class="card">☕<br>کافه<br><button onclick="teleport(27,-8,'☕ کافه')">ورود</button></div>
+
+ <div class="card">💇<br>آرایشگاه<br><button onclick="teleport(-16,8,'💇 آرایشگاه')">ورود</button></div>
+
+ <div class="card">🌷<br>گل‌فروشی<br><button onclick="teleport(-27,8,'🌷 گل‌فروشی')">ورود</button></div>
+
+ <div class="card">🍕<br>رستوران<br><button onclick="teleport(16,8,'🍕 رستوران')">ورود</button></div>
+
+ <div class="card">🏦<br>بانک<br><button onclick="teleport(28,8,'🏦 بانک')">ورود</button></div>
+
+ <div class="card">🏥<br>بیمارستان<br><button onclick="teleport(-42,0,'🏥 بیمارستان')">ورود</button></div>
+
+ <div class="card">🏫<br>مدرسه<br><button onclick="teleport(42,0,'🏫 مدرسه')">ورود</button></div>
+
+ <div class="card">🌳<br>پارک<br><button onclick="teleport(0,43,'🌳 پارک')">ورود</button></div>
+
+ <div class="card">🏠<br>خانه<br><button onclick="teleport(0,-32,'🏠 برگشت به خانه')">ورود</button></div>
+
+ </div>
+
+ <br>
+ <button onclick="closePanel()">بستن</button>
+ `;
+}
+
+
+/* =========================================================
+   SHOPS
+========================================================= */
+
+function shopsPanel(){
+
+ return `
+ <h2>🛍️ خرید</h2>
+
+ <div class="grid">
+
+ <div class="card">
+ 🍎 سبد میوه<br>💎 20
+ <br><button onclick="buy(20)">خرید</button>
+ </div>
+
+ <div class="card">
+ 🌷 گل<br>💎 25
+ <br><button onclick="buy(25)">خرید</button>
+ </div>
+
+ <div class="card">
+ ☕ قهوه<br>💎 15
+ <br><button onclick="buy(15)">خرید</button>
+ </div>
+
+ <div class="card">
+ 🍕 پیتزا<br>💎 35
+ <br><button onclick="buy(35)">خرید</button>
+ </div>
+
+ <div class="card">
+ 👗 لباس<br>💎 60
+ <br><button onclick="buyOutfit()">خرید</button>
+ </div>
+
+ <div class="card">
+ 🐱 اسباب‌بازی پت<br>💎 50
+ <br><button onclick="buy(50)">خرید</button>
+ </div>
+
+ </div>
+
+ <br>
+ <button onclick="closePanel()">بستن</button>
+ `;
+}
+
+window.buy=function(price){
+
+ if(coins<price){
+  message("💎 سکه کافی نیست!");
+  return;
+ }
+
+ coins-=price;
+ addXP(8);
+ updateStats();
+ message("🛍️ خرید انجام شد!");
+};
+
+window.buyOutfit=function(){
+
+ if(coins<60){
+  message("💎 سکه کافی نیست!");
+  return;
+ }
+
+ coins-=60;
+ outfitIndex=(outfitIndex+1)%clothes.length;
+ buildCharacter();
+ addXP(15);
+ updateStats();
+ message("👗 لباس جدید گرفتی!");
+};
+
+
+/* =========================================================
+   STYLE
+========================================================= */
 
 function stylePanel(){
 
@@ -1495,30 +1133,22 @@ function stylePanel(){
  <div class="grid">
 
  <div class="card">
- 👗<br>
- لباس
- <br><br>
+ 👗 لباس<br>
  <button onclick="changeOutfit()">تغییر</button>
  </div>
 
  <div class="card">
- 💇<br>
- مو
- <br><br>
+ 💇 مو<br>
  <button onclick="changeHair()">تغییر</button>
  </div>
 
  <div class="card">
- 👜<br>
- اکسسوری
- <br><br>
+ 💎 اکسسوری<br>
  <button onclick="changeAccessory()">تغییر</button>
  </div>
 
  <div class="card">
- 🌸<br>
- پوست
- <br><br>
+ 🌸 پوست<br>
  <button onclick="changeSkin()">تغییر</button>
  </div>
 
@@ -1530,95 +1160,37 @@ function stylePanel(){
 }
 
 window.changeOutfit=function(){
-
- outfitIndex++;
-
- if(outfitIndex>=outfitColors.length)
-  outfitIndex=0;
-
+ outfitIndex=(outfitIndex+1)%clothes.length;
  buildCharacter();
-
  addXP(10);
-
- message("👗 لباس جدید!");
-
+ message("👗 لباس عوض شد!");
 };
 
 window.changeHair=function(){
-
- hairIndex++;
-
- if(hairIndex>=hairColors.length)
-  hairIndex=0;
-
+ hairIndex=(hairIndex+1)%hairs.length;
  buildCharacter();
-
  addXP(10);
-
- message("💇 مدل مو تغییر کرد!");
-
+ message("💇 مو عوض شد!");
 };
 
 window.changeAccessory=function(){
-
- accessoryIndex++;
-
- if(accessoryIndex>2)
-  accessoryIndex=0;
-
+ accessoryIndex=(accessoryIndex+1)%3;
  buildCharacter();
-
  addXP(10);
-
- message("👜 اکسسوری تغییر کرد!");
-
+ message("💎 اکسسوری عوض شد!");
 };
 
 window.changeSkin=function(){
-
- skinIndex++;
-
- if(skinIndex>=skinColors.length)
-  skinIndex=0;
-
+ skinIndex=(skinIndex+1)%skin.length;
  buildCharacter();
-
  addXP(5);
-
  message("✨ ظاهر تغییر کرد!");
-
 };
 
 
-/* =====================================================
+/* =========================================================
    ROOMS
-===================================================== */
-
-let roomTheme=0;
-
-window.changeRoom=function(){
-
- roomTheme++;
-
- if(roomTheme>3)
-  roomTheme=0;
-
- const colors=[
-  0xf8dff0,
-  0xdceeff,
-  0xe5f5dc,
-  0xffead2
- ];
-
- backWall.material.color.setHex(
-  colors[roomTheme]
- );
-
- addXP(5);
-
- message("🌸 دکور خانه تغییر کرد!");
-
-};
+========================================================= */
 
 function roomsPanel(){
 
@@ -1627,32 +1199,20 @@ function roomsPanel(){
 
  <div class="grid">
 
- <div class="card">
- 🛏️<br>
- اتاق خواب
- <br><br>
- <button onclick="teleport(-5,2)">ورود</button>
+ <div class="card">🛏️ اتاق خواب<br>
+ <button onclick="teleport(-4,-37,'🛏️ اتاق خواب')">ورود</button>
  </div>
 
- <div class="card">
- 🛋️<br>
- پذیرایی
- <br><br>
- <button onclick="teleport(5,-2)">ورود</button>
+ <div class="card">🛋️ پذیرایی<br>
+ <button onclick="teleport(5,-37,'🛋️ پذیرایی')">ورود</button>
  </div>
 
- <div class="card">
- 🍳<br>
- آشپزخانه
- <br><br>
- <button onclick="teleport(5,5)">ورود</button>
+ <div class="card">🏙️ شهر<br>
+ <button onclick="teleport(0,-10,'🏙️ شهر')">خروج</button>
  </div>
 
- <div class="card">
- 🌸<br>
- تغییر تم
- <br><br>
- <button onclick="changeRoom()">تغییر</button>
+ <div class="card">🌳 پارک<br>
+ <button onclick="teleport(0,43,'🌳 پارک')">پارک</button>
  </div>
 
  </div>
@@ -1662,364 +1222,82 @@ function roomsPanel(){
  `;
 }
 
-window.teleport=function(x,z){
 
- player.position.x=x;
- player.position.z=z;
-
- closePanel();
-
- message("🏠 رفتیم به اتاق!");
-
-};
-
-
-/* =====================================================
-   FURNITURE
-===================================================== */
-
-const movable=[];
-
-function addMovable(
- name,
- color,
- x,
- z
-){
-
- const item=
-  box(
-   1,.8,1,
-   color,
-   x,.4,z
-  );
-
- item.userData.name=name;
-
- movable.push(item);
-
- return item;
-}
-
-addMovable(
- "صندلی",
- 0xe59bc0,
- -1,
- 4
-);
-
-addMovable(
- "میز",
- 0xb98361,
- 1,
- 4
-);
-
-addMovable(
- "گلدان",
- 0x76c58a,
- 8,
- 2
-);
-
-let selectedFurniture=0;
-
-function furniturePanel(){
-
- return `
- <h2>🪑 دکور</h2>
-
- <div class="grid">
-
- <div class="card">
- 🪑 صندلی
- <br><br>
- <button onclick="selectFurniture(0)">
- انتخاب
- </button>
- </div>
-
- <div class="card">
- 🪵 میز
- <br><br>
- <button onclick="selectFurniture(1)">
- انتخاب
- </button>
- </div>
-
- <div class="card">
- 🌿 گلدان
- <br><br>
- <button onclick="selectFurniture(2)">
- انتخاب
- </button>
- </div>
-
- </div>
-
- <p style="text-align:center">
- بعد از انتخاب، با دکمه‌های پایین حرکتش بده.
- </p>
-
- <button onclick="moveFurniture(-1,0)">
- ⬅️
- </button>
-
- <button onclick="moveFurniture(1,0)">
- ➡️
- </button>
-
- <button onclick="moveFurniture(0,-1)">
- ⬆️
- </button>
-
- <button onclick="moveFurniture(0,1)">
- ⬇️
- </button>
-
- <br><br>
-
- <button onclick="closePanel()">
- بستن
- </button>
- `;
-}
-
-window.selectFurniture=function(i){
-
- selectedFurniture=i;
-
- message(
-  "🪑 "+movable[i].userData.name+
-  " انتخاب شد"
- );
-
-};
-
-window.moveFurniture=function(x,z){
-
- const item=
-  movable[selectedFurniture];
-
- item.position.x+=x*.35;
- item.position.z+=z*.35;
-
- addXP(2);
-
-};
-
-
-/* =====================================================
-   SHOP
-===================================================== */
-
-function shopPanel(){
-
- return `
- <h2>🛍️ فروشگاه</h2>
-
- <div class="grid">
-
- <div class="card">
- 🌸 دکور صورتی
- <br><br>
- 💎 30
- <br><br>
- <button onclick="buy(30)">
- خرید
- </button>
- </div>
-
- <div class="card">
- 🪴 گیاه
- <br><br>
- 💎 40
- <br><br>
- <button onclick="buy(40)">
- خرید
- </button>
- </div>
-
- <div class="card">
- 👗 لباس خاص
- <br><br>
- 💎 60
- <br><br>
- <button onclick="buyOutfit()">
- خرید
- </button>
- </div>
-
- <div class="card">
- 🐱 اسباب‌بازی پت
- <br><br>
- 💎 50
- <br><br>
- <button onclick="buy(50)">
- خرید
- </button>
- </div>
-
- </div>
-
- <br>
-
- <button onclick="closePanel()">
- بستن
- </button>
- `;
-}
-
-window.buy=function(price){
-
- if(coins<price){
-
-  message("💎 سکه کافی نیست!");
-
-  return;
- }
-
- coins-=price;
-
- addXP(8);
-
- updateStats();
-
- message(
-  "🛍️ خرید انجام شد!"
- );
-
-};
-
-window.buyOutfit=function(){
-
- if(coins<60){
-
-  message("💎 سکه کافی نیست!");
-
-  return;
- }
-
- coins-=60;
-
- outfitIndex++;
-
- if(outfitIndex>=outfitColors.length)
-  outfitIndex=0;
-
- buildCharacter();
-
- addXP(15);
-
- updateStats();
-
- message("👗 لباس خریداری شد!");
-
-};
-
-
-/* =====================================================
+/* =========================================================
    MINI GAME
-===================================================== */
+========================================================= */
 
 let miniActive=false;
+let taps=0;
 
 window.miniGame=function(){
 
  if(miniActive)return;
 
  miniActive=true;
+ taps=0;
 
- let left=10;
-
- message(
-  "🎮 مینی‌گیم! ۱۰ بار سریع صفحه را لمس کن!"
- );
+ message("🎮 10 بار صفحه را لمس کن!");
 
  function tap(){
 
-  left--;
-
+  taps++;
   coins+=3;
-
   updateStats();
 
-  if(left<=0){
+  if(taps>=10){
 
    miniActive=false;
-
    addXP(25);
+   message("🎉 بردی! +30 💎");
 
-   message(
-    "🎉 بردی! +30 💎"
+   renderer.domElement.removeEventListener(
+    "pointerdown",tap
    );
-
-   renderer.domElement
-    .removeEventListener(
-     "pointerdown",
-     tap
-    );
-
   }
-
  }
 
- renderer.domElement
-  .addEventListener(
-   "pointerdown",
-   tap
-  );
-
+ renderer.domElement.addEventListener(
+  "pointerdown",tap
+ );
 };
 
 
-/* =====================================================
-   DAILY REWARD
-===================================================== */
+/* =========================================================
+   DAILY
+========================================================= */
 
 window.reward=function(){
 
- const today=
-  new Date().toDateString();
+ const today=new Date().toDateString();
 
- const last=
-  localStorage.getItem(
-   "dreamyDaily"
-  );
-
- if(last===today){
-
-  message(
-   "🎁 جایزه امروز رو گرفتی!"
-  );
-
+ if(localStorage.getItem("dreamyDaily")===today){
+  message("🎁 جایزه امروز رو گرفتی!");
   return;
  }
 
- localStorage.setItem(
-  "dreamyDaily",
-  today
- );
+ localStorage.setItem("dreamyDaily",today);
 
  coins+=100;
-
  addXP(20);
 
- message(
-  "🎁 +100 💎 جایزه روزانه!"
- );
-
+ message("🎁 +100 💎 جایزه روزانه!");
 };
 
 
-/* =====================================================
+/* =========================================================
    PANELS
-===================================================== */
+========================================================= */
 
-const panel=
- document.getElementById("panel");
+const panel=document.getElementById("panel");
 
 window.openPanel=function(type){
+
+ if(type==="city")
+  panel.innerHTML=cityPanel();
+
+ if(type==="shops")
+  panel.innerHTML=shopsPanel();
 
  if(type==="style")
   panel.innerHTML=stylePanel();
@@ -2027,158 +1305,109 @@ window.openPanel=function(type){
  if(type==="rooms")
   panel.innerHTML=roomsPanel();
 
- if(type==="shop")
-  panel.innerHTML=shopPanel();
-
- if(type==="furniture")
-  panel.innerHTML=furniturePanel();
-
  panel.style.display="block";
-
 };
 
 window.closePanel=function(){
-
  panel.style.display="none";
-
 };
 
 
-/* =====================================================
+/* =========================================================
    MESSAGE
-===================================================== */
+========================================================= */
 
 let messageTimer;
 
 function message(t){
 
- const el=
-  document.getElementById("msg");
+ const el=document.getElementById("msg");
 
  el.textContent=t;
-
  el.style.opacity=1;
 
  clearTimeout(messageTimer);
 
- messageTimer=
-  setTimeout(()=>{
-   el.style.opacity=0;
-  },1800);
-
+ messageTimer=setTimeout(()=>{
+  el.style.opacity=0;
+ },1800);
 }
 
 
-/* =====================================================
-   ANIMATION
-===================================================== */
+/* =========================================================
+   LOAD
+========================================================= */
+
+outfitIndex=
+ Number(localStorage.getItem("dreamyOutfit")||0);
+
+hairIndex=
+ Number(localStorage.getItem("dreamyHair")||0);
+
+accessoryIndex=
+ Number(localStorage.getItem("dreamyAccessory")||0);
+
+buildCharacter();
+updateStats();
+
+
+/* =========================================================
+   GAME LOOP
+========================================================= */
 
 let time=0;
 
 function animate(){
 
- requestAnimationFrame(
-  animate
- );
+ requestAnimationFrame(animate);
 
  time+=.03;
 
  movePlayer();
-
  animatePlayer();
-
  updatePet();
-
- updateCamera();
+ updateNPCs(time);
+ updateCars();
 
  pet.position.y=
   Math.sin(time*3)*.025;
 
  pet.rotation.y+=.005;
 
- renderer.render(
-  scene,
-  camera
- );
+ updateCamera();
 
+ renderer.render(scene,camera);
 }
 
 animate();
 
 
-/* =====================================================
+/* =========================================================
    RESIZE
-===================================================== */
+========================================================= */
 
-window.addEventListener(
- "resize",
- ()=>{
+window.addEventListener("resize",()=>{
 
-  camera.aspect=
-   innerWidth/innerHeight;
+ camera.aspect=innerWidth/innerHeight;
+ camera.updateProjectionMatrix();
 
-  camera.updateProjectionMatrix();
-
-  renderer.setSize(
-   innerWidth,
-   innerHeight
-  );
-
-  renderer.setPixelRatio(
-   PIXEL_RATIO
-  );
-
- }
-);
+ renderer.setSize(innerWidth,innerHeight);
+ renderer.setPixelRatio(DPR);
+});
 
 
-/* =====================================================
-   LOAD STYLE
-===================================================== */
-
-outfitIndex=
- Number(
-  localStorage.getItem(
-   "dreamyOutfit"
-  )||0
- );
-
-hairIndex=
- Number(
-  localStorage.getItem(
-   "dreamyHair"
-  )||0
- );
-
-accessoryIndex=
- Number(
-  localStorage.getItem(
-   "dreamyAccessory"
-  )||0
- );
-
-buildCharacter();
-
-updateStats();
-
-
-/* =====================================================
+/* =========================================================
    START
-===================================================== */
+========================================================= */
 
 setTimeout(()=>{
 
- document
-  .getElementById("loading")
-  .style.display="none";
+ document.getElementById("loading").style.display="none";
 
- message(
-  "✨ به Dreamy Room خوش اومدی!"
- );
+ message("🏙️ به Dreamy Room City خوش اومدی!");
 
 },900);
 
 </script>
-
 </body>
 </html>
